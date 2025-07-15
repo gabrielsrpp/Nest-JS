@@ -10,5 +10,38 @@ export class CoursesService {
             description: 'Curso sobre fundamentos do framework NestJS',
             tags: ['node.js', 'nestjs', 'javascript', 'typescript'],
         },
-    ]
+    ];
+
+    findAll() {
+        return this.courses;
+    }
+
+    findOne(id: number) {
+        return this.courses.find(course => course.id === id);
+    }
+
+    create(createCourseDTO: any) {
+        this.courses.push({
+            id: this.courses.length + 1, // ou outra lógica de ID
+            ...createCourseDTO,
+        });
+    }
+
+    update(id: number, updateCourseDTO: any) {
+        const existingCourse = this.findOne(id);
+        if (existingCourse) {
+            const index = this.courses.findIndex(course => course.id === id);
+            this.courses[index] = {
+                id,
+                ...updateCourseDTO,
+            };
+        }
+    }
+
+    remove(id: number) {
+        const index = this.courses.findIndex(course => course.id === id);
+        if (index >= 0) {
+            this.courses.splice(index, 1);
+        }
+    }
 }
