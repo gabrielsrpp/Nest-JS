@@ -11,5 +11,5 @@ export class CoursesController {
     findOne(@Param('id') id: string) {
         return  `Curso com ID ${id}`;
     }
-} 
+}
 
