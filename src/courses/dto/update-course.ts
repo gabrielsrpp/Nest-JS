@@ -1,7 +1,4 @@
-export class UpdateCourseDTO {
-    readonly name?: string
+import { PartialType } from "@nestjs/mapped-types";
+import { CreateCourseDTO } from "./create-course.dto";
 
-    readonly description?: string
-
-    readonly tags?: string[]
-}
+export class UpdateCourseDTO extends PartialType(CreateCourseDTO) {}
